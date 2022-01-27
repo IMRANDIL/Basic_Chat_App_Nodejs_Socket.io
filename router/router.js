@@ -2,6 +2,11 @@ const router = require('express').Router();
 
 
 
+
+
+
+
+
 //get....
 let messages = [
     { name: "Ali", message: "Hey Ali" },
@@ -13,13 +18,6 @@ router.get('/messages', (req, res) => {
 })
 
 
-//post...
-
-router.post('/messages', (req, res) => {
-
-    messages.push(req.body)
-    res.sendStatus(200);
-});
 
 
 
