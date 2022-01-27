@@ -15,7 +15,8 @@ router.get('/messages', (req, res) => {
 //post...
 
 router.post('/messages', (req, res) => {
-    console.log(req.body);
+
+    messages.push(req.body)
     res.sendStatus(200);
 })
 

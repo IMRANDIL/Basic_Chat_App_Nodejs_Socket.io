@@ -1,6 +1,7 @@
 $(() => {
     $('#btn').click(() => {
-        addmessages({ name: 'Ali', message: 'Hello from my Chat App.' })
+        let message = { name: $("#name").val(), message: $('#message').val() };
+        postMessages(message)
     });
 
     getMessages()
@@ -18,4 +19,8 @@ function getMessages() {
     $.get('http://localhost:5000/messages', (data) => {
         data.forEach(addmessages)
     })
+}
+
+function postMessages(message) {
+    $.post('http://localhost:5000/messages', message)
 }
