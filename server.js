@@ -24,14 +24,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 
-app.use('https://basic-chat-app001.herokuapp.com/', router)
+app.use('/', router)
 
 
 
 //post...
 
 
-app.post('https://basic-chat-app001.herokuapp.com/messages', (req, res) => {
+app.post('/messages', (req, res) => {
     const message = new Message(req.body);
     message.save((err) => {
         if (err) return sendStatus(500);
