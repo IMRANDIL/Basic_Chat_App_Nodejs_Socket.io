@@ -5,6 +5,12 @@ require('dotenv').config();
 
 
 const app = express();
+
+const http = require('http').Server(app);
+
+const io = require('socket.io')(http)
+
+
 const router = require('./router/router')
 //middleware...
 
@@ -17,6 +23,6 @@ app.use('/', router)
 
 
 
-app.listen(process.env.PORT || 3000, () => {
+http.listen(process.env.PORT || 3000, () => {
     console.log(`server is running on port:${process.env.PORT}`);
 })
