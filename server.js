@@ -38,6 +38,7 @@ app.post('/messages', (req, res) => {
 
         io.emit('message', req.body)
         res.sendStatus(200);
+        res.redirect('/')
     });
 
 });
