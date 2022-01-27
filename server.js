@@ -20,6 +20,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/', router)
 
 
+io.on('connection', (socket) => {
+    console.log('a user connected');
+})
+
 
 
 
