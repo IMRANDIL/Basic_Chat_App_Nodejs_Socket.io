@@ -37,7 +37,7 @@ app.post('/messages', (req, res) => {
         if (err) return sendStatus(500);
 
         io.emit('message', req.body)
-        res.redirect('/');
+        res.sendStatus(200);
 
     });
 
