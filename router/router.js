@@ -1,6 +1,10 @@
 const router = require('express').Router();
 
+const { sendStatus } = require('express/lib/response');
+const db = require('../db/connection');
 
+
+const Message = require('../modals/schema');
 
 
 
@@ -8,13 +12,14 @@ const router = require('express').Router();
 
 
 //get....
-let messages = [
-    { name: "Ali", message: "Hey Ali" },
-    { name: "Adil", message: "Hey Adil" }
-]
+
 
 router.get('/messages', (req, res) => {
-    res.send(messages)
+    Message.find({}, (err, messages) => {
+        if (err) return sendStatus(404)
+        res.send(messages)
+    })
+
 })
 
 

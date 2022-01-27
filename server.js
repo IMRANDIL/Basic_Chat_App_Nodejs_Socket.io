@@ -14,7 +14,9 @@ const io = require('socket.io')(http)
 
 
 
-const router = require('./router/router')
+const router = require('./router/router');
+const Message = require('./modals/schema');
+
 //middleware...
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -27,18 +29,17 @@ app.use('/', router)
 
 
 //post...
-let messages = [
-    { name: "Ali", message: "Hey Ali" },
-    { name: "Adil", message: "Hey Adil" }
-]
-
 
 
 app.post('/messages', (req, res) => {
+    const message = new Message(req.body);
+    message.save((err) => {
+        if (err) return sendStatus(500);
 
-    messages.push(req.body);
-    io.emit('message', req.body)
-    res.sendStatus(200);
+        io.emit('message', req.body)
+        res.sendStatus(200);
+    });
+
 });
 
 
